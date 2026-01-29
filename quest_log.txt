@@ -1,0 +1,4 @@
+--- Game Dimulai ---
+Pemain menemukan Pedang Emas.
+Pemain melawan monster.
+Pemain menang.
