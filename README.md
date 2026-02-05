@@ -247,12 +247,4 @@ intermediate-python/
 
 ---
 
-## 📚 Resources
 
-- [Python Official Documentation](https://docs.python.org/3/)
-- [Real Python - Intermediate Topics](https://realpython.com/)
-- [Python Functional Programming HOWTO](https://docs.python.org/3/howto/functional.html)
-
----
-
-*Happy Learning! 🚀*
