@@ -9,7 +9,8 @@ Repositori ini berisi materi pembelajaran Python tingkat menengah (intermediate)
 1. [Struktur Data (Data Structures)](#-struktur-data-data-structures)
 2. [Pemrograman Fungsional (Functional Programming)](#-pemrograman-fungsional-functional-programming)
 3. [File Handling (I/O Operations)](#-file-handling-io-operations)
-4. [Struktur Folder](#-struktur-folder)
+4. [Testing (Unit Testing)](#-testing-unit-testing)
+5. [Struktur Folder](#-struktur-folder)
 
 ---
 
@@ -174,6 +175,85 @@ with open("output.csv", "w", newline="") as file:
 
 ---
 
+## 🧪 Testing (Unit Testing)
+
+Mempelajari cara membuat unit test menggunakan library `unittest` bawaan Python.
+
+### 📁 Folder: `testing/`
+
+#### 🔹 Konsep yang Dipelajari:
+
+| File | Konsep | Deskripsi |
+|------|--------|----------|
+| `testing.py` | **Dasar Unit Testing** | Pengenalan `unittest`, assertion dasar (`assertEqual`, `assertRaises`) |
+| `testing2.py` | **Testing Sederhana** | Contoh test untuk fungsi matematika |
+| `bankAkun.py` | **Testing Class** | Test `BankAccount` dengan `setUp()`, `tearDown()`, dan edge cases |
+| `coffee_menu.py` + `test_coffe_menu.py` | **Comprehensive Testing** | 20+ test cases mencakup edge cases, boundary testing, float precision |
+| `string_utils.py` | **Helper Methods** | Pattern reusable helper methods dalam test class |
+| `test_string.py`, `test_string_lagi.py` | **String Testing** | Fungsi utility string untuk ditest |
+| `demo.py` | **Demo Lengkap** | Docstring, setUp, tearDown dengan penjelasan komprehensif |
+
+#### 🎯 Contoh Kode Penting:
+
+**1. Struktur Dasar Unit Test:**
+```python
+import unittest
+
+class TestMyFunction(unittest.TestCase):
+    def setUp(self):
+        # Dijalankan sebelum SETIAP test method
+        self.data = [1, 2, 3]
+    
+    def tearDown(self):
+        # Dijalankan setelah SETIAP test method
+        del self.data
+    
+    def test_example(self):
+        self.assertEqual(len(self.data), 3)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+**2. Assertion Methods Umum:**
+```python
+# Perbandingan nilai
+self.assertEqual(actual, expected)
+self.assertNotEqual(a, b)
+
+# Boolean
+self.assertTrue(condition)
+self.assertFalse(condition)
+
+# Exception handling
+with self.assertRaises(ValueError):
+    fungsi_yang_raise_error()
+
+# Float precision
+self.assertAlmostEqual(2.3333333, result, places=5)
+```
+
+**3. Testing Edge Cases:**
+```python
+class TestBankAccount(unittest.TestCase):
+    def setUp(self):
+        self.account = BankAccount(100)
+    
+    def test_deposit_positive(self):
+        self.account.deposit(50)
+        self.assertEqual(self.account.balance, 150)
+    
+    def test_deposit_negative_raises_error(self):
+        with self.assertRaises(ValueError):
+            self.account.deposit(-50)
+    
+    def test_withdraw_insufficient_funds(self):
+        with self.assertRaises(ValueError):
+            self.account.withdraw(200)
+```
+
+---
+
 ## 📁 Struktur Folder
 
 ```
@@ -219,6 +299,16 @@ intermediate-python/
 │   ├── packing.py              # CSV + error handling
 │   └── ...                     # File latihan lainnya
 │
+├── testing/                     # Unit Testing
+│   ├── README.md               # Panduan lengkap testing
+│   ├── testing.py              # Dasar unit testing
+│   ├── bankAkun.py             # Testing class dengan setUp/tearDown
+│   ├── coffee_menu.py          # Class untuk ditest
+│   ├── test_coffe_menu.py      # Comprehensive test cases
+│   ├── string_utils.py         # String helper functions
+│   ├── demo.py                 # Demo dengan penjelasan
+│   └── ...                     # File test lainnya
+│
 └── *.csv, *.txt                 # File data untuk latihan
 ```
 
@@ -244,6 +334,13 @@ intermediate-python/
 2. Context manager (`with` statement)
 3. CSV operations
 4. Error handling dengan `try-except-finally`
+
+### Level 4: Testing
+1. Struktur dasar `unittest`
+2. Assertion methods (`assertEqual`, `assertTrue`, `assertRaises`)
+3. `setUp()` dan `tearDown()`
+4. Testing edge cases dan boundary conditions
+5. Comprehensive test coverage
 
 ---
 
